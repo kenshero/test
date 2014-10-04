@@ -1,0 +1,164 @@
+<!doctype html>
+<html ng-app="grade">
+    <head>
+        <meta charset="UTF-8">
+        <script src="js/angular.min.js"></script>
+        <script src="js/script.js"></script>
+
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css">
+        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+    </head>
+    <body ng-controller="doGrade">
+        <div class="wrapper">
+            <div class="container topbar">
+                <div class="row">
+                  <div class="col-md-12">
+                    <table class="table table-bordered tab">
+                        <thead>
+                            <th class="col-sm-1 th">ลำดับ</th>
+                            <th class="th">ชื่อวิชา</th>
+                            <th class="col-sm-1 th">หน่วยกิต</th>
+                            <th class="col-sm-1 th">เกรด</th>
+                            <th class="col-sm-1 th">เครื่องมือ</th>
+                        </thead>
+
+                        <tr ng-repeat="g in todos">
+
+                            <td>{{$index+1}}</td>
+
+                            <td >
+                            <div class="form-group">
+                               <input type="text" class="form-control sub" id="subject" placeholder="วิชา" ng-model="g.subject">
+                            </div>
+                            </td>
+
+                            <td>
+                            <div class="form-group">
+                                <select class="form-control" ng-model="g.credit">
+                                  <option>1</option>
+                                  <option>3</option>
+                                </select>
+                            </div>
+                            </td>
+
+                            <td>
+                     
+                                <div class="form-group">
+                                  <select class="form-control" ng-model="g.grade">
+                                    <option>A</option>
+                                    <option>B+</option>
+                                    <option>B</option>
+                                    <option>C+</option>
+                                    <option>C</option>
+                                    <option>D+</option>
+                                    <option>D</option>
+                                    <option>F</option>
+                                  </select>
+                                </div>
+                      
+                           </td>
+
+                            <td>
+
+                            <div class="col-sm-1">
+                            <button type="button" class="btn btn-danger" ng-click="deleteTodo(g._id)" title="Delete"><i class="fa fa-trash-o"></i></button>
+                            </div> 
+
+                             </td>
+
+                        </tr>
+
+                         <tr >
+                            <td  class="avg" colspan="4"> เกรดเฉลี่ย</td>
+                            <td class="avg">{{calgrade().toFixed(2)}}</td>
+                        </tr>
+
+
+                    </table>
+                  </div>
+                </div>
+              </div> <!-- container -->
+
+          <form role="form">
+           <fieldset>
+            
+
+           <div class="container">
+           <legend class="leg">เพิ่มวิชา:</legend>
+              <div class="row"> 
+               
+                    
+                      <div class="col-md-1">
+                        <label for="subject">ชื่อวิชา :</label>
+                       </div> 
+
+                  <div class="col-md-6">
+                     <div class="form-group">
+                        <input type="text" class="form-control" id="subject" placeholder="วิชา" ng-model="formData.subject">
+                    </div>
+                  </div>
+
+                </div>
+             </div>
+
+                <div class="container">
+                  <div class="row">  
+
+                       <div class="col-md-1">
+                        <label for="credit">เกรด :</label>
+                       </div> 
+
+                    <div class="col-md-6"> 
+                      <div class="form-group">
+                        <select class="form-control" ng-model="formData.grade">
+                          <option>A</option>
+                          <option>B+</option>
+                          <option>B</option>
+                          <option>C+</option>
+                          <option>C</option>
+                          <option>D+</option>
+                          <option>D</option>
+                          <option>F</option>
+                        </select>
+                      </div>
+                   </div>
+
+                  </div>
+                 </div>  
+
+           <div class="container">
+              <div class="row">  
+
+                <div class="col-md-1">
+                   <label for="grade">หน่วยกิต :</label>
+                </div> 
+
+                <div class="col-md-6"> 
+          
+                  <div class="form-group">
+                      <select class="form-control" ng-model="formData.credit">
+                        <option>1</option>
+                        <option>3</option>
+                      </select>
+                  </div>
+
+                </div>
+              </div>  
+             </div> 
+
+             <div class="container bottom">
+                <div class="row">  
+                  <div class="col-md-3"> 
+                    <button type="submit" class="btn btn-default" ng-click="createTodo()">เพิ่มวิชา</button>
+                  </div>  
+               </div>
+             </div>   
+
+         </fieldset>   
+         </form>
+
+     </div> <!-- wrapper -->
+   </body>
+ </html>
